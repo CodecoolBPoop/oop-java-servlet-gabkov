@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
+
 
 @WebServlet(name = "WebShopServlet", urlPatterns = {"/"}, loadOnStartup = 1)
 public class WebShopServlet extends HttpServlet {
@@ -24,19 +24,20 @@ public class WebShopServlet extends HttpServlet {
             throws IOException {
 
         PrintWriter out = response.getWriter();
-        String title = "GET method with parameters to display";
+        String title = "WebShop by GabKov";
 
         if(request.getParameter("add") != null){
-            for(Item item : ItemStore.getItemList()){
-                if(request.getParameter("add") == item.getName()) {
+            for(Item item : ItemStore.getAvailableItems()){
+                if(request.getParameter("add").equals(item.getName())) {
                     ItemStore.add(item);
                 }
             }
             response.sendRedirect("/");
         } else if(request.getParameter("remove") != null){
             for(Item item : ItemStore.getItemList()){
-                if(request.getParameter("remove") == item.getName()) {
+                if(request.getParameter("remove").equals(item.getName())) {
                     ItemStore.remove(item);
+                    break;
                 }
             }
             response.sendRedirect("/");
@@ -53,14 +54,15 @@ public class WebShopServlet extends HttpServlet {
         for (Item item: ItemStore.getAvailableItems()){
             sb.append("<tr>" +
                         "<td>" + item.getName() + "</td>" +
-                        "<td>" + item.getPrice() + "</td>" +
+                        "<td>" + (int) item.getPrice() + " USD</td>" +
                         "<form action=\"/\"><td><button type=\"submit\" name=\"add\" value=\""+ item.getName() + "\">Add</button></td></form>\n"+
                         "<form action=\"/\"><td><button type=\"submit\" name=\"remove\" value=\"" + item.getName() + "\">Remove</button></td></form>\n" +
                     "</tr>\n");
         }
 
         sb.append("</table>\n" +
-                "<div>Visit another servlet: <a href=\"/another\">Visit the other servlet</a></div>\n" +
+                "<br>" +
+                "<div><a href=\"/shopping-cart\">Check Shopping Cart</a></div>\n" +
                 "</body></html>");
 
         out.println(sb.toString());

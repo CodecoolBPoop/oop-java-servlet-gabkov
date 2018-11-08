@@ -1,6 +1,7 @@
 package com.codecool.servlet;
 
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
 public class ItemStore {
@@ -17,7 +18,7 @@ public class ItemStore {
     }
 
     public static void remove(Item item){
-        availableItems.remove(item);
+        itemList.remove(item);
     }
 
     public static List<Item> getAvailableItems() {
@@ -26,5 +27,10 @@ public class ItemStore {
 
     public static List<Item> getItemList() {
         return itemList;
+    }
+
+    public static double getSumPrice(){
+        DoubleSummaryStatistics stats = itemList.stream().mapToDouble((x) -> x.getPrice()).summaryStatistics();
+        return stats.getSum();
     }
 }

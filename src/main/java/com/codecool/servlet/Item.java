@@ -21,7 +21,4 @@ public class Item {
         return price;
     }
 
-    public String niceFormat(){
-        return getName() + " " + getPrice();
-    }
 }
