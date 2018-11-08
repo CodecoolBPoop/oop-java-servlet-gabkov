@@ -1,6 +1,6 @@
 package com.codecool.servlet;
 
-public class Item {
+class Item {
     private static int id = 0;
     private int itemId;
     private String name;
