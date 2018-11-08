@@ -2,7 +2,6 @@ package com.codecool.servlet;
 
 public class Item {
     private static int id = 0;
-
     private int itemId;
     private String name;
     private double price;
@@ -13,11 +12,11 @@ public class Item {
         this.price = price;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public double getPrice() {
+    double getPrice() {
         return price;
     }
 
