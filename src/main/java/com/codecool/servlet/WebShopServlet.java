@@ -30,6 +30,7 @@ public class WebShopServlet extends HttpServlet {
             for(Item item : ItemStore.getAvailableItems()){
                 if(request.getParameter("add").equals(item.getName())) {
                     ItemStore.add(item);
+                    break;
                 }
             }
             response.sendRedirect("/");
