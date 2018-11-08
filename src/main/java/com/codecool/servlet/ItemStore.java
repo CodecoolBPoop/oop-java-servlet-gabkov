@@ -13,12 +13,20 @@ class ItemStore {
         availableItems.add(item);
     }
 
-    static void add(Item item){
-        itemList.add(item);
+    static void add(String itemName){
+        for(Item item : availableItems){
+            if(item.getName().equals(itemName)){
+                itemList.add(item);
+            }
+        }
     }
 
-    static void remove(Item item){
-        itemList.remove(item);
+    static void remove(String itemName){
+        for(Item item : availableItems){
+            if(item.getName().equals(itemName)){
+                itemList.remove(item);
+            }
+        }
     }
 
     static List<Item> getAvailableItems() {

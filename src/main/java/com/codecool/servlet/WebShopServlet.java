@@ -27,20 +27,10 @@ public class WebShopServlet extends HttpServlet {
         String title = "WebShop by GabKov";
 
         if(request.getParameter("add") != null){
-            for(Item item : ItemStore.getAvailableItems()){
-                if(request.getParameter("add").equals(item.getName())) {
-                    ItemStore.add(item);
-                    break;
-                }
-            }
+            ItemStore.add(request.getParameter("add"));
             response.sendRedirect("/");
         } else if(request.getParameter("remove") != null){
-            for(Item item : ItemStore.getItemList()){
-                if(request.getParameter("remove").equals(item.getName())) {
-                    ItemStore.remove(item);
-                    break;
-                }
-            }
+            ItemStore.remove(request.getParameter("remove"));
             response.sendRedirect("/");
         }
 
