@@ -34,7 +34,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
         sb.append("</table>\n" +
                 "<br>" +
-                "<strong><div>Sum of Price: "+ ItemStore.getSumPrice() + " USD</div></strong>\n" +
+                "<strong><div>Sum of Price: "+ (int) ItemStore.getSumPrice() + " USD</div></strong>\n" +
                 "</body></html>");
 
         out.println(sb.toString());
